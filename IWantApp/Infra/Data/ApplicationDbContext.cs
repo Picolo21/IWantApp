@@ -1,4 +1,5 @@
-﻿using IWantApp.Domain.Products;
+﻿using Flunt.Notifications;
+using IWantApp.Domain.Products;
 using Microsoft.EntityFrameworkCore;
 
 namespace IWantApp.Infra.Data
@@ -9,5 +10,10 @@ namespace IWantApp.Infra.Data
         public DbSet<Category> Categories { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Ignore<Notification>();
+        }
     }
 }
